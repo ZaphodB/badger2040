@@ -2,7 +2,7 @@ import badger2040
 import network
 import time
 
-Security=(
+Security = (
     'open',
     'WEP',
     'WPA-PSK',
@@ -17,7 +17,7 @@ Security=(
 )
 
 
-Visibility=(
+Visibility = (
     'visible',
     'hidden',
     '?',
@@ -64,7 +64,7 @@ def update_display():
         ssid, bssid, channel, RSSI, security, hidden = net
         display.text("{} {} {} {}".format(str(RSSI), ssid.decode("utf-8"), Security[security], Visibility[hidden]), 0, y, badger2040.WIDTH)
         y += LINE_HEIGHT
-    
+
     display.update()
     time.sleep(30)
 
@@ -76,4 +76,3 @@ while True:
     display.keepalive()
     display.halt()
     time.sleep(0.01)
-
