@@ -4,15 +4,15 @@ import network
 from enum import Enum
 
 class Security(Enum):
-    'open' = 0
-    'WEP' = 1
-    'WPA-PSK' = 2
-    'WPA2-PSK' = 3
-    'WPA/WPA2-PSK' = 4
+    open = 0
+    WEP = 1
+    WPA_PSK = 2
+    WPA2_PSK = 3
+    WPA_WPA2_PSK = 4
 
 class Visibility(Enum):
-    'visible' = 0
-    'hidden' = 1
+    visible = 0
+    hidden = 1
 
 TEXT_SIZE = 1
 LINE_HEIGHT = 16
