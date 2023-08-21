@@ -3,6 +3,7 @@ from badger2040 import WIDTH
 import network
 from enum import Enum
 
+
 class Security(Enum):
     open = 0
     WEP = 1
@@ -10,9 +11,11 @@ class Security(Enum):
     WPA2_PSK = 3
     WPA_WPA2_PSK = 4
 
+
 class Visibility(Enum):
     visible = 0
     hidden = 1
+
 
 TEXT_SIZE = 1
 LINE_HEIGHT = 16
