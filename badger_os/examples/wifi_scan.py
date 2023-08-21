@@ -47,12 +47,14 @@ nic.active(True)
 
 
 def update_display():
+    # Clear to white
+    display.set_pen(15)
     display.clear()
-    # Page Header
-    display.set_pen(10)
-    display.rectangle(0, 0, badger2040.WIDTH, 20)
-    display.set_font('bitmap8')
+    
+    display.set_font("bitmap8")
     display.set_pen(0)
+    display.rectangle(0, 0, WIDTH, 16)
+    display.set_pen(15)
 
     y = 35 + int(LINE_HEIGHT / 2)
     nets = nic.scan()
