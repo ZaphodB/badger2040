@@ -8,9 +8,9 @@ Security = (
     'WPA-PSK',
     'WPA2-PSK',
     'WPA/WPA2-PSK',
-    'WPA2-Enterprise',
-    'WPA3-PSK',
     'WPA2/WPA3-PSK',
+    'WPA3-PSK',
+    'WPA2-Enterprise',
     'WAPI-PSK',
     'OWE',
     'MAX'
