@@ -36,7 +36,7 @@ button_c = badger2040.BUTTONS[badger2040.BUTTON_C]
 button_up = badger2040.BUTTONS[badger2040.BUTTON_UP]
 button_down = badger2040.BUTTONS[badger2040.BUTTON_DOWN]
 
-LINE_HEIGHT = 16
+LINE_HEIGHT = 8
 
 # Display Setup
 display = badger2040.Badger2040()
@@ -52,8 +52,6 @@ def update_display():
     display.clear()
 
     display.set_font("bitmap8")
-    display.set_pen(0)
-    display.rectangle(0, 0, badger2040.WIDTH, 16)
     display.set_pen(0)
 
     y = 35 + int(LINE_HEIGHT / 2)
