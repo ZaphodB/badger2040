@@ -54,7 +54,7 @@ def update_display():
     display.set_font("bitmap8")
     display.set_pen(0)
 
-    y = 35 + int(LINE_HEIGHT / 2)
+    y = int(LINE_HEIGHT / 2)
     nets = nic.scan()
     # sort by 4th item (RSSI) descending
     nets.sort(key=lambda x: x[3], reverse=True)
@@ -72,5 +72,4 @@ def update_display():
 while True:
     update_display()
     display.keepalive()
-    display.halt()
     time.sleep(0.01)
