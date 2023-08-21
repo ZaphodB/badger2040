@@ -50,7 +50,10 @@ def update_display():
     # Page Header
     display.clear()
     display.set_pen(0)
+    display.rectangle(0, 0, badger2040.WIDTH, 20)
+    display.set_pen(0)
     display.set_font('bitmap8')
+    display.set_pen(0)
 
     y = 35 + int(LINE_HEIGHT / 2)
     nets = nic.scan()
