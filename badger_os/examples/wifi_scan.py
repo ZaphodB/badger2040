@@ -3,6 +3,7 @@ import network
 import time
 
 Security = (
+    'buf',
     'open',
     'WEP',
     'WPA-PSK',
@@ -18,6 +19,7 @@ Security = (
 
 
 Visibility = (
+    'buf',
     'visible',
     'hidden',
     '?',
@@ -60,11 +62,11 @@ def update_display():
     nets.sort(key=lambda x: x[3], reverse=True)
     for net in nets:
         ssid, bssid, channel, RSSI, security, hidden = net
-        display.text("{} {} {} {}".format(str(RSSI), ssid.decode("utf-8"), str(security), str(hidden)), 0, y, badger2040.WIDTH, fixed_width=True, scale=0.3)
+        display.text("{} {} {} {}".format(str(RSSI), ssid.decode("utf-8"), Security[security], Visibility[hidden]), 0, y, badger2040.WIDTH, fixed_width=True, scale=0.3)
         y += LINE_HEIGHT
 
     display.update()
-    time.sleep(30)
+    time.sleep(10)
 
 
 # Call halt in a loop, on battery this switches off power.
