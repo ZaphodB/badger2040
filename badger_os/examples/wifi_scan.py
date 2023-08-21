@@ -14,7 +14,7 @@ Security=(
     'WAPI-PSK',
     'OWE',
     'MAX'
-    )
+)
 
 
 Visibility=(
@@ -27,7 +27,7 @@ Visibility=(
     '?',
     '?',
     '?'
-    )
+)
 
 button_a = badger2040.BUTTONS[badger2040.BUTTON_A]
 button_b = badger2040.BUTTONS[badger2040.BUTTON_B]
@@ -46,6 +46,7 @@ display.led(128)
 nic = network.WLAN(network.STA_IF)
 nic.active(True)
 
+
 def update_display():
     # Page Header
     display.set_pen(10)
@@ -54,19 +55,19 @@ def update_display():
     display.rectangle(0, 0, badger2040.WIDTH, 20)
     display.set_pen(0)
     display.set_font('bitmap8')
-    
+
     y = 35 + int(LINE_HEIGHT / 2)
-    
     nets = nic.scan()
     # sort by 4th item (RSSI) descending
     nets.sort(key=lambda x: x[3], reverse=True)
     for net in nets:
         ssid, bssid, channel, RSSI, security, hidden = net
-        display.text("{} {} {} {}".format(str(RSSI), ssid.decode("utf-8"), Security[security], Visibility[hidden]), 0, y, WIDTH)
+        display.text("{} {} {} {}".format(str(RSSI), ssid.decode("utf-8"), Security[security], Visibility[hidden]), 0, y, badger2040.WIDTH)
         y += LINE_HEIGHT
     
     display.update()
     time.sleep(30)
+
 
 # Call halt in a loop, on battery this switches off power.
 # On USB, the app will exit when A+C is pressed because the launcher picks that up.
@@ -75,3 +76,4 @@ while True:
     display.keepalive()
     display.halt()
     time.sleep(0.01)
+
