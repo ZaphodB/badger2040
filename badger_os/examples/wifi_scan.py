@@ -36,7 +36,6 @@ button_c = badger2040.BUTTONS[badger2040.BUTTON_C]
 button_up = badger2040.BUTTONS[badger2040.BUTTON_UP]
 button_down = badger2040.BUTTONS[badger2040.BUTTON_DOWN]
 
-TEXT_SIZE = 0.45
 LINE_HEIGHT = 16
 
 # Display Setup
@@ -49,10 +48,7 @@ nic.active(True)
 
 def update_display():
     # Page Header
-    display.set_pen(10)
     display.clear()
-    display.set_pen(0)
-    display.rectangle(0, 0, badger2040.WIDTH, 20)
     display.set_pen(0)
     display.set_font('bitmap8')
 
@@ -62,7 +58,7 @@ def update_display():
     nets.sort(key=lambda x: x[3], reverse=True)
     for net in nets:
         ssid, bssid, channel, RSSI, security, hidden = net
-        display.text("{} {} {} {}".format(str(RSSI), ssid.decode("utf-8"), Security[security], Visibility[hidden]), 0, y, badger2040.WIDTH)
+        display.text("{} {} {} {}".format(str(RSSI), ssid.decode("utf-8"), Security[security], Visibility[hidden]), 0, y, badger2040.WIDTH, scale=3)
         y += LINE_HEIGHT
 
     display.update()
