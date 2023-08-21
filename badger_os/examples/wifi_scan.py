@@ -30,7 +30,7 @@ display.clear()
 display.set_pen(0)
 display.rectangle(0, 0, WIDTH, 20)
 display.set_pen(0)
-display.set_font('bitmap8')
+#display.set_font('bitmap8')
 
 y = 35 + int(LINE_HEIGHT / 2)
 
