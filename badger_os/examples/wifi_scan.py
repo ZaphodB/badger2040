@@ -36,8 +36,8 @@ button_c = badger2040.BUTTONS[badger2040.BUTTON_C]
 button_up = badger2040.BUTTONS[badger2040.BUTTON_UP]
 button_down = badger2040.BUTTONS[badger2040.BUTTON_DOWN]
 
-TEXT_SIZE = 1
-LINE_HEIGHT = 8
+TEXT_SIZE = 0.45
+LINE_HEIGHT = 16
 
 # Display Setup
 display = badger2040.Badger2040()
