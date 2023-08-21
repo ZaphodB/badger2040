@@ -1,54 +1,77 @@
 import badger2040
-from badger2040 import WIDTH
 import network
-# from enum import Enum
+import time
+
+Security=(
+    'open',
+    'WEP',
+    'WPA-PSK',
+    'WPA2-PSK',
+    'WPA/WPA2-PSK',
+    'WPA2-Enterprise',
+    'WPA3-PSK',
+    'WPA2/WPA3-PSK',
+    'WAPI-PSK',
+    'OWE',
+    'MAX'
+    )
 
 
-# class Security(Enum):
-#     open = 0
-#     WEP = 1
-#     WPA_PSK = 2
-#     WPA2_PSK = 3
-#     WPA_WPA2_PSK = 4
-#
-#
-# class Visibility(Enum):
-#     visible = 0
-#     hidden = 1
+Visibility=(
+    'visible',
+    'hidden',
+    '?',
+    '?',
+    '?',
+    '?',
+    '?',
+    '?',
+    '?'
+    )
 
+button_a = badger2040.BUTTONS[badger2040.BUTTON_A]
+button_b = badger2040.BUTTONS[badger2040.BUTTON_B]
+button_c = badger2040.BUTTONS[badger2040.BUTTON_C]
+
+button_up = badger2040.BUTTONS[badger2040.BUTTON_UP]
+button_down = badger2040.BUTTONS[badger2040.BUTTON_DOWN]
 
 TEXT_SIZE = 1
-LINE_HEIGHT = 16
+LINE_HEIGHT = 8
 
 # Display Setup
 display = badger2040.Badger2040()
 display.led(128)
 
-# Page Header
-display.set_pen(15)
-display.clear()
-display.set_pen(0)
-display.rectangle(0, 0, WIDTH, 20)
-display.set_pen(0)
-display.set_font('bitmap8')
-
-y = 35 + int(LINE_HEIGHT / 2)
-
 nic = network.WLAN(network.STA_IF)
 nic.active(True)
-nets = nic.scan()
-# sort by 4th item (RSSI) descending
-nets.sort(key=lambda x: x[3], reverse=True)
-for net in nets:
-    ssid, bssid, channel, RSSI, security, hidden = net
-    # display.text("{} {} {} {}".format(Visibility(hidden).name, str(RSSI), ssid.decode("utf-8"), Security(security).name), 0, y, WIDTH)
-    display.text("{} {} {} {}".format(str(hidden), str(RSSI), ssid.decode("utf-8"), str(security)), 0, y, WIDTH)
-    y += LINE_HEIGHT
 
-display.update()
+def update_display():
+    # Page Header
+    display.set_pen(10)
+    display.clear()
+    display.set_pen(0)
+    display.rectangle(0, 0, badger2040.WIDTH, 20)
+    display.set_pen(0)
+    display.set_font('bitmap8')
+    
+    y = 35 + int(LINE_HEIGHT / 2)
+    
+    nets = nic.scan()
+    # sort by 4th item (RSSI) descending
+    nets.sort(key=lambda x: x[3], reverse=True)
+    for net in nets:
+        ssid, bssid, channel, RSSI, security, hidden = net
+        display.text("{} {} {} {}".format(str(RSSI), ssid.decode("utf-8"), Security[security], Visibility[hidden]), 0, y, WIDTH)
+        y += LINE_HEIGHT
+    
+    display.update()
+    time.sleep(30)
 
 # Call halt in a loop, on battery this switches off power.
 # On USB, the app will exit when A+C is pressed because the launcher picks that up.
 while True:
+    update_display()
     display.keepalive()
     display.halt()
+    time.sleep(0.01)
