@@ -20,7 +20,7 @@ y = 35 + int(LINE_HEIGHT / 2)
 
 nic = network.WLAN(network.STA_IF)
 nic.active(True)
-for net in nic.scan()
+for net in nic.scan():
     ssid, bssid, channel, RSSI, security, hidden = net
     display.text("> {}".format(ssid), 0, y, WIDTH)
     y += LINE_HEIGHT
