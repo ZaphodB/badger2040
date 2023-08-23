@@ -70,6 +70,5 @@ def update_display():
 # Call halt in a loop, on battery this switches off power.
 # On USB, the app will exit when A+C is pressed because the launcher picks that up.
 while True:
-    update_display()
     display.keepalive()
     time.sleep(0.01)
